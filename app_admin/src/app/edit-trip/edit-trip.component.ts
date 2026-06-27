@@ -39,7 +39,7 @@ export class EditTripComponent implements OnInit {
 
     this.editForm = this.formBuilder.group({
       _id: [],
-      code: ['tripCode', Validators.required],
+      code: [tripCode, Validators.required],
       name: ['', Validators.required],
       length: ['', Validators.required],
       start: ['', Validators.required],
@@ -52,18 +52,26 @@ export class EditTripComponent implements OnInit {
     this.tripDataService.getTrip(tripCode)
       .subscribe({
         next: (value: any) => {
-          this.trip = value;
-          // Populate our record into the form
-          this.editForm.patchValue(value[0]);
-          if(!value)
-          {
-            this.message = 'No Trip Retrieved!';
-          }
-          else {
-            this.message = 'Trip: ' + tripCode + ' retrieved';
-          }
-          console.log(this.message);
-        },
+
+  // Get the trip object from the returned array
+  const trip = value[0];
+
+  // Convert ISO date to yyyy-MM-dd for the HTML date input
+  trip.start = trip.start.split('T')[0];
+
+  this.trip = trip;
+
+  // Populate the form
+  this.editForm.patchValue(trip);
+
+  if (!value || value.length === 0) {
+    this.message = 'No Trip Retrieved!';
+  } else {
+    this.message = 'Trip: ' + tripCode + ' retrieved';
+  }
+
+  console.log(this.message);
+},
         error: (error: any) => {
           console.log('Error: ' + error);
         }
