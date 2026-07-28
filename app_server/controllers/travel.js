@@ -1,37 +1,41 @@
+/**
+ * Travel page controller.
+ * Retrieves trip data from the Travlr Getaways API and renders the
+ * Travel Handlebars view using the Express view engine.
+ */
+
 const tripsEndpoint = 'http://localhost:3000/api/trips';
+
 const options = {
     method: 'GET',
     headers: {
-        'Accept': 'application/json'
+        Accept: 'application/json'
     }
-}
-// var fs = require('fs');
-// var trips = JSON.parse(fs.readFileSync('./data/trips.json', 'utf-8'));
+};
 
 const travel = async function (req, res, next) {
-    // console.log("TRAVEL CONTROLLER BEING");
     await fetch(tripsEndpoint, options)
-        .then(res => res.json())
+        .then(response => response.json())
         .then(json => {
             let message = null;
+
             if (!(json instanceof Array)) {
-                message = "API lookup error";
+                message = 'API lookup error';
                 json = [];
-            } else {
-                if (!json.length) {
-                    message = "No trips exist in our database!";
-                }
+            } else if (!json.length) {
+                message = 'No trips exist in our database!';
             }
-            res.render("travel", {
-                title: "Travlr Getaways",
+
+            res.render('travel', {
+                title: 'Travel - Travlr Getaways',
                 trips: json
             });
         })
-        .catch(err => {
-            res.status(500).send(err.message);
+        .catch(error => {
+            res.status(500).send(error.message);
         });
 };
 
 module.exports = {
-    travel,
+    travel
 };

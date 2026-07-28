@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {{!-- Sets the character encoding for the page. --}}
+    <meta charset="UTF-8">
+
+    {{!-- Makes the page responsive on different screen sizes. --}}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {{!-- Displays the page title passed from the controller. --}}
+    <title>{{title}}</title>
+
+    {{!-- Loads the main stylesheet. --}}
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+
+  <body>
+    {{!-- Main website container. --}}
+    <div id="background">
+
+      {{!-- Displays the header and current page content. --}}
+      <div id="page">
+        {{> header}}
+
+        {{{body}}}
+      </div>
+
+      {{!-- Displays the shared footer. --}}
+      {{> footer}}
+
+    </div>
+  </body>
+</html>
