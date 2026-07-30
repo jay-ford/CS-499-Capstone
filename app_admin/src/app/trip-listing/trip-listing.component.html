@@ -1,9 +1,127 @@
- <div *ngIf="isLoggedIn()">
-    <button (click)="addTrip()" class="btn btn-info">Add Trip</button>
- </div>
-<div class="row">
-    <div *ngFor="let trip of trips" class="col-md-4">
-        <app-trip-card [trip]="trip" class="card-deck mt-2"></app-trip-card>
+ <div class="trip-listing-page">    
+  <!-- Page Header -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+      <h2 class="mb-1">Available Trips</h2>
+      <p class="text-muted mb-0">{{ message }}</p>
     </div>
-</div>
 
+    <div *ngIf="isLoggedIn()">
+      <button (click)="addTrip()" class="btn btn-info">Add Trip</button>
+    </div>
+  </div>
+
+  <!-- Trip Recommendation Form -->
+  <section class="recommendation-panel mb-4">
+    <h3 class="h5">Find Recommended Trips</h3>
+
+    <form #recommendationForm="ngForm"
+          (ngSubmit)="recommendTrips()"
+          class="row g-3">
+      <div class="col-md-4">
+        <label for="resort" class="form-label">
+          Preferred resort or destination
+        </label>
+        <input
+          id="resort"
+          name="resort"
+          type="text"
+          class="form-control"
+          [(ngModel)]="preferences.resort"
+          placeholder="Example: Emerald Bay">
+      </div>
+
+      <div class="col-md-4">
+        <label for="maxPrice" class="form-label">
+          Maximum price per person
+        </label>
+        <input
+          id="maxPrice"
+          name="maxPrice"
+          type="number"
+          min="1"
+          step="1"
+          class="form-control"
+          [(ngModel)]="preferences.maxPrice"
+          placeholder="Example: 1200">
+      </div>
+
+      <div class="col-md-4">
+        <label for="maxDays" class="form-label">
+          Maximum number of days
+        </label>
+        <input
+          id="maxDays"
+          name="maxDays"
+          type="number"
+          min="1"
+          step="1"
+          class="form-control"
+          [(ngModel)]="preferences.maxDays"
+          placeholder="Example: 5">
+      </div>
+
+      <div class="col-12 d-flex flex-wrap gap-2">
+        <button type="submit" class="btn btn-primary">
+          Find Recommended Trips
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          (click)="clearRecommendations()">
+          Clear Recommendations
+        </button>
+      </div>
+    </form>
+
+    <div
+      *ngIf="recommendationMessage"
+      class="alert mt-3 mb-0"
+      [class.alert-info]="!hasSearched || recommendedTrips.length > 0"
+      [class.alert-warning]="hasSearched && recommendedTrips.length === 0"
+      role="status">
+      {{ recommendationMessage }}
+    </div>
+  </section>
+
+  <!-- Recommended Trip Results -->
+  <section *ngIf="hasSearched; else defaultTripList">
+    <div *ngIf="recommendedTrips.length > 0" class="row">
+      <div
+        *ngFor="let recommendation of recommendedTrips"
+        class="col-md-4 mb-3">
+        <div class="recommendation-result h-100">
+          <div class="recommendation-summary">
+            <span class="badge bg-primary">
+              Recommendation score: {{ recommendation.score }} / 6
+            </span>
+
+            <ul class="match-list mb-0 mt-2">
+              <li *ngFor="let match of recommendation.matches">
+                {{ match }}
+              </li>
+            </ul>
+          </div>
+
+          <app-trip-card
+            [trip]="recommendation.trip"
+            class="card-deck mt-2">
+          </app-trip-card>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Default Trip List -->
+  <ng-template #defaultTripList>
+    <div class="row">
+      <div *ngFor="let trip of trips" class="col-md-4 mb-3">
+        <app-trip-card
+          [trip]="trip"
+          class="card-deck mt-2">
+        </app-trip-card>
+      </div>
+    </div>
+  </ng-template>
+</div>

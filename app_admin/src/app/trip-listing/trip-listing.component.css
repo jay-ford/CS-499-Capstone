@@ -1,0 +1,39 @@
+/* Trip Listing Layout */
+.trip-listing-page {
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+/* Recommendation Panel */
+.recommendation-panel {
+  border: 1px solid #dee2e6;
+  border-radius: 0.5rem;
+  background-color: #f8f9fa;
+  padding: 1.25rem;
+}
+
+/* Recommendation Results */
+.recommendation-result {
+  border: 1px solid #dee2e6;
+  border-radius: 0.5rem;
+  background-color: #ffffff;
+  padding: 0.75rem;
+}
+
+.recommendation-summary {
+  padding: 0.25rem 0.25rem 0.75rem;
+}
+
+.match-list {
+  padding-left: 1.25rem;
+  font-size: 0.9rem;
+}
+
+.match-list li {
+  margin-bottom: 0.2rem;
+}
+
+/* Trip Card */
+app-trip-card {
+  display: block;
+}
