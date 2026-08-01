@@ -1,97 +1,94 @@
-const mongoose = require('mongoose');
-const Trip = require('../models/travlr');  // Register model
-const Model = mongoose.model('trips');
+const Trip = require('../models/travlr');
 
-// GET: /trips - lists all the trips
-// Regardless of outcome, response must include HTML status code
-// and JSON message to the requesting client
-const tripsList = async(req, res) => {
-    const q = await Model
-        .find({}) // No filter, return all records
-        .exec();
+/**
+ * Convert a Mongoose or MongoDB error into a clear API response.
+ */
+const handleDatabaseError = (res, error) => {
+    console.error('Database operation failed:', error);
 
-        // Uncomment the following line to show results of query
-        // on the console
-        console.log(q);
+    if (error.name === 'ValidationError') {
+        const validationErrors = Object.values(error.errors).map(
+            validationError => validationError.message
+        );
 
-        if(!q)
-        { // Database returned no data
-            return res
-                .status(404)
-                .json(err);
-        } else { // Return resulting trip list
-            return res
-                .status(200)
-                .json(q);
-        }
-        
-};
+        return res.status(400).json({
+            message: 'Trip validation failed',
+            errors: validationErrors
+        });
+    }
 
-// GET: /trips/:tripCode - lists a single trip
-// Regardless of outcome, response must include HTML status code
-// and JSON message to the routing client
-const tripsFindByCode = async(req, res) => {
-    const q = await Model
-        .find({'code' : req.params.tripCode}) // Return single record
-        .exec();
+    if (error.code === 11000) {
+        return res.status(409).json({
+            message: 'A trip with this trip code already exists'
+        });
+    }
 
-        // Uncomment the following line to show results of query
-        // on the console
-        console.log(q);
+    if (error.name === 'CastError') {
+        return res.status(400).json({
+            message: `Invalid value provided for ${error.path}`
+        });
+    }
 
-        if(!q)
-        { // Database returned no data
-            return res
-                .status(404)
-                .json(err);
-        } else { // Return resulting trip list
-            return res
-                .status(200)
-                .json(q);
-        }
-        
-};
-
-// POST: /trips - Adds a new Trip
-// Regardless of outcome, response must include HTML status code
-// and JSON message to the requesting client
-const tripsAddTrip = async(req, res) => {
-    const newTrip = new Trip({
-        code: req.body.code,
-        name: req.body.name,
-        length: req.body.length,
-        start: req.body.start,
-        resort: req.body.resort,
-        perPerson: req.body.perPerson,
-        image: req.body.image,
-        description: req.body.description
+    return res.status(500).json({
+        message: 'An unexpected database error occurred'
     });
-
-    const q = await newTrip.save();
-
-    if(!q)
-    { // Database returned to no data
-        return res
-            .status(400)
-            .json(err);
-    } else { // Return new trip
-        return res
-            .status(201)
-            .json(q);
-        }
 };
 
-// PUT: /trips/:tripCode - Adds a new Trip
-// Regardless of outcome, response must include HTML status code
-// and JSON message to the requesting client
-const tripsUpdateTrip = async(req, res) => {
-    // Uncomment for debugging
-    console.log(req.params);
-    console.log(req.body);
+// GET: /trips
+const tripsList = async (req, res) => {
+    try {
+        const trips = await Trip.find({}).exec();
+        return res.status(200).json(trips);
+    } catch (error) {
+        return handleDatabaseError(res, error);
+    }
+};
 
-    const q = await Model
-        .findOneAndUpdate(
-            { 'code' : req.params.tripCode },
+// GET: /trips/:tripCode
+const tripsFindByCode = async (req, res) => {
+    try {
+        const trips = await Trip
+            .find({ code: req.params.tripCode.toUpperCase() })
+            .exec();
+
+        if (trips.length === 0) {
+            return res.status(404).json({ message: 'Trip not found' });
+        }
+
+        // Retain the array response because the Angular edit component
+        // currently reads the requested trip from value[0].
+        return res.status(200).json(trips);
+    } catch (error) {
+        return handleDatabaseError(res, error);
+    }
+};
+
+// POST: /trips
+const tripsAddTrip = async (req, res) => {
+    try {
+        const newTrip = new Trip({
+            code: req.body.code,
+            name: req.body.name,
+            length: req.body.length,
+            start: req.body.start,
+            resort: req.body.resort,
+            perPerson: req.body.perPerson,
+            image: req.body.image,
+            description: req.body.description
+        });
+
+        const savedTrip = await newTrip.save();
+        return res.status(201).json(savedTrip);
+    } catch (error) {
+        return handleDatabaseError(res, error);
+    }
+};
+
+// PUT: /trips/:tripCode
+const tripsUpdateTrip = async (req, res) => {
+    try {
+        const updatedTrip = await Trip.findOneAndUpdate(
+            { code: req.params.tripCode.toUpperCase() },
             {
                 code: req.body.code,
                 name: req.body.name,
@@ -101,25 +98,23 @@ const tripsUpdateTrip = async(req, res) => {
                 perPerson: req.body.perPerson,
                 image: req.body.image,
                 description: req.body.description
+            },
+            {
+                new: true,
+                runValidators: true,
+                context: 'query'
             }
-        )
-        .exec();
+        ).exec();
 
-        if(!q)
-        { // Database returned no data
-            return res
-                .status(400)
-                .json(err);
-        } else { // Return resulting updated trip
-            return res
-                .status(201)
-                .json(q);
+        if (!updatedTrip) {
+            return res.status(404).json({ message: 'Trip not found' });
         }
 
-        // Uncomment the following line to show results of operation
-        // on the console
-        console.log(q);
-};    
+        return res.status(200).json(updatedTrip);
+    } catch (error) {
+        return handleDatabaseError(res, error);
+    }
+};
 
 module.exports = {
     tripsList,

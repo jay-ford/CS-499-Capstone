@@ -1,19 +1,34 @@
-// Bring in the DB connection and the Trip schema
-const Mongoose = require('./db');
+// Bring in the database connection and Trip schema.
+const mongoose = require('./db');
 const Trip = require('./travlr');
+const fs = require('fs');
+const path = require('path');
 
-// Read seed data from json file
-var fs = require('fs')
-var trips = JSON.parse(fs.readFileSync('./data/trips.json' , 'utf8'))
+// Read the seed data from the JSON file.
+// Use __dirname so the seed script works regardless of the current terminal location.
+const trips = JSON.parse(
+    fs.readFileSync(
+        path.join(__dirname, '../../data/trips.json'),
+        'utf8'
+    )
+);
 
-// delete any existing records, then insert seed data
 const seedDB = async () => {
-    await Trip.deleteMany({});
-    await Trip.insertMany(trips);
+    try {
+        await Trip.deleteMany({});
+        await Trip.insertMany(trips);
+
+        // Ensure MongoDB indexes match the schema declarations.
+        await Trip.syncIndexes();
+
+        console.log(`${trips.length} trips successfully added`);
+        console.log('Trip indexes successfully synchronized');
+    } catch (error) {
+        console.error('Database seed failed:', error);
+        process.exitCode = 1;
+    } finally {
+        await mongoose.connection.close();
+    }
 };
 
-// Close the MogoDB connection and exit
-seedDB().then(async () => {
-    await Mongoose.connection.close();
-    process.exit(0);
-});
+seedDB();

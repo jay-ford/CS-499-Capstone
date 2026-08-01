@@ -2,18 +2,31 @@ const mongoose = require('mongoose');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 
+// Define the user schema with validation.
 const userSchema = new mongoose.Schema({
     email: {
         type: String,
+        required: [true, 'Email address is required'],
         unique: true,
-        required: true
+        trim: true,
+        lowercase: true,
+        maxlength: [254, 'Email address cannot exceed 254 characters'],
+        match: [
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+            'A valid email address is required'
+        ]
     },
+
     name: {
         type: String,
-        required: true
+        required: [true, 'Name is required'],
+        trim: true,
+        minlength: [2, 'Name must contain at least 2 characters'],
+        maxlength: [100, 'Name cannot exceed 100 characters']
     },
-    hash: String,
-    salt: String
+
+    hash: { type: String },
+    salt: { type: String }
 });
 
 // Method to set the password on this record
@@ -22,7 +35,7 @@ userSchema.methods.setPassword = function (password) {
     this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex');
 };
 
-// Method to compared entered password against stored hash
+// Method to compare entered password against stored hash
 userSchema.methods.validPassword = function (password) {
     var hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex');
     return this.hash === hash;
