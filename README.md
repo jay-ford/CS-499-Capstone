@@ -54,6 +54,10 @@ The final artifact represents the completed Travlr Getaways application after al
 
 The final artifact also includes an expanded six-trip dataset used to demonstrate and test the recommendation functionality across multiple combinations of resort, price, and trip-duration preferences.
 
+### Final Source Code
+
+[**View the Final Travlr Getaways Artifact**](https://github.com/jay-ford/CS-499-Capstone/tree/final-artifact)
+
 ---
 
 ## Final ePortfolio
