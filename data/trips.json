@@ -1,32 +1,93 @@
-[
-    {
-        "code" : "GALR210214",
-        "name" : "Gale Reef",
-        "length" : "4 nights / 5 days",
-        "start" : "2021-02-14T08:00:00Z",
-        "resort" : "Emerald Bay, 3 stars",
-        "perPerson" : "799.00",
-        "image" : "reef1.jpg",
-        "description" : "<p>Gale Reef Sed et augue lorem. In sit amet placerat arcu. Mauris volutpat ipsum ac justo mollis vel vestibulum orci gravida. Vestibulum sit amet porttitor odio. Nulla facilisi. Fusce at pretium felis. Sed consequat libero ut turpis venenatis ut aliquam risus semper. Etiam convallis mi vel risus pretium sodales. Etiam nunc lorem ullamcorper vitae laoreet."
-    } , 
-    {
-        "code" : "DAWR210315",
-        "name" : "Dawson's Reef",
-        "length" : "4 nights / 5 days",
-        "start" : "2021-03-15T08:00:00z",
-        "resort" : "Blue Lagoon, 4 stars",
-        "perPerson" : "1199.00",
-        "image" : "reef2.jpg",
-        "description" : "<p>Dawson's Reef Integer magna leo, posuere et dignissim vitae, porttitor at odio. Pellentesque a metus nec magna placerat volutpat. Nunc nisi mi, elementum sit amet aliquet quis, tristique quis nisl. Curabitur odio lacus, blandit ut hendrerit vulputate, vulputate at est. Morbi aliquet viverra metus eu consectetur. In lorem dui, elementum sit amet convallis ac, tincidunt vel sapien."
-    } , 
-    {
-        "code" : "CLAR210621",
-        "name" : "Claire's Reef",
-        "length" : "4 nights / 5 days",
-        "start" : "2021-06-21T08:00:00Z",
-        "resort" : "Coral Sands, 5 stars",
-        "perPerson" : "1999.00",
-        "image" : "reef3.jpg",
-        "description" : "<p>Claire's Reef Donec sed felis risus. Nulla facilisi. Donec a orci tellus, et auctor odio. Fusce ac orci nibh, quis semper arcu. Cras orci neque, euismod et accumsan ac, sagittis molestie lorem. Proin odio sapien, elementum at tempor non. Vulputate eget libero. In hac habitasse platea dictumst. Integer purus justo, egestas eu consectetur eu, cursus in tortor. Quisque nec nunc ac mi ultrices iaculis."
-    }
-]
+[{
+  "_id": {
+    "$oid": "6a6bbee6dc47939b7c84c5ea"
+  },
+  "code": "GALR210214",
+  "name": "Gale Reef",
+  "length": "4 nights / 5 days",
+  "start": {
+    "$date": "2021-02-14T08:00:00.000Z"
+  },
+  "resort": "Emerald Bay, 3 stars",
+  "perPerson": "799.00",
+  "image": "reef1.jpg",
+  "description": "<p>Gale Reef Sed et augue lorem. In sit amet placerat arcu. Mauris volutpat ipsum ac justo mollis vel vestibulum orci gravida. Vestibulum sit amet porttitor odio. Nulla facilisi. Fusce at pretium felis. Sed consequat libero ut turpis venenatis ut aliquam risus semper. Etiam convallis mi vel risus pretium sodales. Etiam nunc lorem ullamcorper vitae laoreet.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a6bbee6dc47939b7c84c5eb"
+  },
+  "code": "DAWR210315",
+  "name": "Dawson's Reef",
+  "length": "4 nights / 5 days",
+  "start": {
+    "$date": "2021-03-15T08:00:00.000Z"
+  },
+  "resort": "Blue Lagoon, 4 stars",
+  "perPerson": "1199.00",
+  "image": "reef2.jpg",
+  "description": "<p>Dawson's Reef Integer magna leo, posuere et dignissim vitae, porttitor at odio. Pellentesque a metus nec magna placerat volutpat. Nunc nisi mi, elementum sit amet aliquet quis, tristique quis nisl. Curabitur odio lacus, blandit ut hendrerit vulputate, vulputate at est. Morbi aliquet viverra metus eu consectetur. In lorem dui, elementum sit amet convallis ac, tincidunt vel sapien.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a6bbee6dc47939b7c84c5ec"
+  },
+  "code": "CLAR210621",
+  "name": "Claire's Reef",
+  "length": "4 nights / 5 days",
+  "start": {
+    "$date": "2021-06-21T08:00:00.000Z"
+  },
+  "resort": "Coral Sands, 5 stars",
+  "perPerson": "1999.00",
+  "image": "reef3.jpg",
+  "description": "<p>Claire's Reef Donec sed felis risus. Nulla facilisi. Donec a orci tellus, et auctor odio. Fusce ac orci nibh, quis semper arcu. Cras orci neque, euismod et accumsan ac, sagittis molestie lorem. Proin odio sapien, elementum at tempor non. Vulputate eget libero. In hac habitasse platea dictumst. Integer purus justo, egestas eu consectetur eu, cursus in tortor. Quisque nec nunc ac mi ultrices iaculis.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a7cf18528aa4963154a5ad0"
+  },
+  "code": "EMBR260915",
+  "name": "Emerald Breeze",
+  "length": "6 nights / 7 days",
+  "start": {
+    "$date": "2026-09-15T08:00:00.000Z"
+  },
+  "resort": "Emerald Bay, 4 stars",
+  "perPerson": "1299.00",
+  "image": "reef1.jpg",
+  "description": "Enjoy a relaxing seven-day getaway at Emerald Bay with beautiful ocean views, resort amenities, and opportunities to explore the surrounding coastline."
+},
+{
+  "_id": {
+    "$oid": "6a7cf1be28aa4963154a5ad2"
+  },
+  "code": "BLUH261010",
+  "name": "Blue Horizon",
+  "length": "3 nights / 4 days",
+  "start": {
+    "$date": "2026-10-10T08:00:00.000Z"
+  },
+  "resort": "Blue Lagoon, 3 stars",
+  "perPerson": "899.00",
+  "image": "reef2.jpg",
+  "description": "Experience a four-day escape at Blue Lagoon featuring coastal scenery, comfortable accommodations, and convenient access to nearby island activities."
+},
+{
+  "_id": {
+    "$oid": "6a7cf1f528aa4963154a5ad5"
+  },
+  "code": "CORV261115",
+  "name": "Coral Vista",
+  "length": "5 nights / 6 days",
+  "start": {
+    "$date": "2026-11-15T08:00:00.000Z"
+  },
+  "resort": "Coral Sands, 4 stars",
+  "perPerson": "1499.00",
+  "image": "reef3.jpg",
+  "description": "Discover a six-day retreat at Coral Sands with scenic coastal views, comfortable resort accommodations, and opportunities to enjoy nearby beaches and island attractions."
+}]
