@@ -1,6 +1,6 @@
 # CS 499 Computer Science Capstone
 
-This repository documents the progression of my **CS 499 Computer Science Capstone** project using the **Travlr Getaways** application. It includes the original artifact, the Milestone One Code Review, all three completed enhancements, and the final artifact developed throughout the course. The completed ePortfolio presents the progression of the project and the professional competencies demonstrated through the enhancement process.
+This repository documents the progression of my **CS 499 Computer Science Capstone** project using the **Travlr Getaways** application. It includes the original artifact, the Informal Code Review, all three completed enhancements, and the final artifact developed throughout the course. The completed ePortfolio presents the progression of the project and the professional competencies demonstrated through the enhancement process.
 
 ---
 
