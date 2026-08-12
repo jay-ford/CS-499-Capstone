@@ -1,0 +1,75 @@
+/* General Page Layout */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    background-color: #f7f7f7;
+    color: #222222;
+}
+
+/* Main Content Area */
+body > * {
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1 {
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+}
+
+h2 {
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+}
+
+h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.15rem;
+}
+
+/* Paragraphs */
+p {
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+/* Links */
+a {
+    color: #1f5f99;
+    text-decoration: none;
+}
+
+a:hover,
+a:focus {
+    text-decoration: underline;
+}
+
+/* Lists */
+ul {
+    padding-left: 2rem;
+}
+
+li {
+    margin-bottom: 0.25rem;
+}
+
+/* Section Dividers */
+hr {
+    border: 0;
+    border-top: 1px solid #cccccc;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Improve Readability on Smaller Screens */
+@media (max-width: 1150px) {
+    body > * {
+        margin-left: 1.25rem;
+        margin-right: 1.25rem;
+    }
+}
