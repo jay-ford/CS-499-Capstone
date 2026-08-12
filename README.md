@@ -74,6 +74,6 @@ CS 499 ePortfolio
 
 The complete CS 499 ePortfolio includes the original artifact, Informal Code Review, enhancement narratives, individual enhancement categories, Professional Self-Assessment, and final artifact.
 
-Return to the CS 499 Capstone Repository
+[Return to the CS 499 Capstone Repository](https://github.com/jay-ford/CS-499-Capstone)
 
-View the CS 499 Computer Science ePortfolio
+[View the CS 499 Computer Science ePortfolio](https://jay-ford.github.io/CS-499-Capstone/)
