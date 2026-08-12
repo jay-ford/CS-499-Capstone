@@ -10,9 +10,9 @@ The original **Travlr Getaways** application, developed for **CS-465 Full Stack 
 
 ---
 
-## Milestone One Code Review
+## Informal Code Review
 
-The **Milestone One Code Review** evaluates the original application, identifies opportunities for improvement, and presents the enhancement plan for the following categories:
+The **Informal Code Review** evaluates the original application, identifies opportunities for improvement, and presents the enhancement plan for the following categories:
 
 - Software Design and Engineering
 - Algorithms and Data Structures
