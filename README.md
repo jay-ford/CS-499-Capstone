@@ -20,7 +20,7 @@ The **Informal Code Review** evaluates the original application, identifies oppo
 
 ### Code Review Video
 
-▶️ [**Watch the Milestone One Code Review on YouTube**](https://youtu.be/nWAV6q646qU)
+▶️ [**Watch the Informal Code Review on YouTube**](https://youtu.be/nWAV6q646qU)
 
 ---
 
@@ -62,7 +62,7 @@ The final artifact also includes an expanded six-trip dataset used to demonstrat
 
 ## Final ePortfolio
 
-The completed ePortfolio showcases the original artifact, Milestone One Code Review, all three enhancement categories, the final artifact, and the professional competencies demonstrated throughout the CS 499 Computer Science Capstone.
+The completed ePortfolio showcases the original artifact, Informal Code Review, all three enhancement categories, the final artifact, and the professional competencies demonstrated throughout the CS 499 Computer Science Capstone.
 
 Additional documentation, enhancement narratives, source code, and project artifacts are included throughout this repository.
 
